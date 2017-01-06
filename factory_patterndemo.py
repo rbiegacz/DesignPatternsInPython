@@ -15,6 +15,7 @@
 #
 
 from abc import ABCMeta,abstractmethod
+from patterndemo import PatternDemo
 
 class Investment:
     __metaclass__ = ABCMeta
@@ -48,10 +49,17 @@ investmentType = {
     "stockexchange" : StockExchange,
 }
 
-factory = InvestmentFactory();
-investments = ["termdeposit", "stockexchange", "stockexchange", "termdeposit", "none"]
-
-for a in investments:
-    temp = factory.createInvestment(a)
-    if (temp != None):
-        temp.InvestmentInfo()
+class FactoryPatternDemo(PatternDemo):
+    @staticmethod
+    def PatternInfo():
+        PatternDemo.PatternInfo()
+        print "This is an example of Factory Design Pattern"
+    
+    def PatternRun(self):
+        factory = InvestmentFactory();
+        investments = ["termdeposit", "stockexchange", "stockexchange", "termdeposit", "none"]
+        
+        for a in investments:
+            temp = factory.createInvestment(a)
+            if (temp != None):
+                temp.InvestmentInfo()

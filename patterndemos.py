@@ -18,10 +18,11 @@ from factory_patterndemo import FactoryPatternDemo
 from facade_patterndemo import FacadePatternDemo
 from decorator_patterndemo import DecoratorPatternDemo
 from dependencyinjection_patterndemo import DependencyInjectionPatternDemo
+from template_designpattern import TemplatePatternDemo
 
-demos = {FacadePatternDemo, FactoryPatternDemo, DecoratorPatternDemo, DependencyInjectionPatternDemo}
+demos = {FacadePatternDemo, FactoryPatternDemo, DecoratorPatternDemo, DependencyInjectionPatternDemo, TemplatePatternDemo }
 
 for pattern in demos:
     pattern.PatternInfo()
-    demo = pattern()
+    demo = pattern(pattern)
     demo.PatternRun()

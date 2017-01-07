@@ -16,11 +16,34 @@
 
 from patterndemo import PatternDemo
 
+def logging(logging_prefix, logging_suffix):
+    def logging_decorator(func):
+        def func_wrapper(name):
+            return "{0}{1}{2}".format(logging_prefix, func(name), logging_suffix)
+        return func_wrapper
+    return logging_decorator
+
+@logging(">>> Info:", ".")
+def loginfo(text):
+    return text
+
+@logging(">>> Warning:", "?")
+def logwarning(text):
+    return text
+
+@logging(">>> Error:", "!")
+def logerror(text):
+    return text
+
 class DecoratorPatternDemo(PatternDemo):
     @staticmethod
+    
     def PatternInfo():
         PatternDemo.PatternInfo()
         print "This is an example of Decorator Design Pattern"
+        print "Insipired by http://thecodeship.com/patterns/guide-to-python-function-decorators/"
     
     def PatternRun(self):
-        print "Decorator not implemented yet"
+        print loginfo("Decorator Pattern is cool")
+        print logwarning("There might be a problem w/ Decorator pattern")
+        print logerror("Your Decorator has a problem")

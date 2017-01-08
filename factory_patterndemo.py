@@ -31,11 +31,15 @@ class StockExchange(Investment):
     def InvestmentInfo(self):
         print("Company on Stock Exchange")
 
-class TermDeposit(Investment):
-    
+class TermDeposit(Investment):  
     interestRate = 0.01
     def InvestmentInfo(self):
         print("Term Deposit in a Bank")
+
+class Bond(Investment):  
+    interestRate = 0.01
+    def InvestmentInfo(self):
+        print("Bonds are usually emitted by governments")
 
 class InvestmentFactory():
     
@@ -47,6 +51,7 @@ class InvestmentFactory():
 investmentType = {
     "termdeposit" : TermDeposit,
     "stockexchange" : StockExchange,
+    "bond" : Bond,
 }
 
 class FactoryPatternDemo(PatternDemo):
@@ -57,7 +62,7 @@ class FactoryPatternDemo(PatternDemo):
     
     def PatternRun(self):
         factory = InvestmentFactory();
-        investments = ["termdeposit", "stockexchange", "stockexchange", "termdeposit", "none"]
+        investments = ["termdeposit", "stockexchange", "stockexchange", "termdeposit", "none", "bond"]
         
         for a in investments:
             temp = factory.createInvestment(a)

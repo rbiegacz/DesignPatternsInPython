@@ -14,15 +14,18 @@
 # limitations under the License.
 #
 
+""" this is main script running all the design pattern examples"""
+
 from factory_patterndemo import FactoryPatternDemo
 from facade_patterndemo import FacadePatternDemo
 from decorator_patterndemo import DecoratorPatternDemo
 from dependencyinjection_patterndemo import DependencyInjectionPatternDemo
 from template_designpattern import TemplatePatternDemo
 
-demos = {FacadePatternDemo, FactoryPatternDemo, DecoratorPatternDemo, DependencyInjectionPatternDemo, TemplatePatternDemo }
+DEMOS = {FacadePatternDemo, FactoryPatternDemo, DecoratorPatternDemo,
+         DependencyInjectionPatternDemo, TemplatePatternDemo}
 
-for pattern in demos:
-    pattern.PatternInfo()
+for pattern in DEMOS:
+    pattern.pattern_info()
     demo = pattern(pattern)
-    demo.PatternRun()
+    demo.pattern_run()

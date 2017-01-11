@@ -13,53 +13,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+""" this is an example of template design pattern """
 
-from abc import ABCMeta,abstractmethod
+from abc import ABCMeta, abstractmethod
 from patterndemo import PatternDemo
 import datetime
 from locale import currency
 from random import randint
 
 class InvestmentTemplate:
+    """ this class is a template class and implements
+    the core of Template design pattern """
     __metaclass__ = ABCMeta
-    
     purchaseDate = None
     sellDate = None
     purchasePrice = 0
     currentPrice = 0
     sellPrice = 0
-    securityName = None   
-
+    securityName = None
     @abstractmethod
-    def InvestmentInfo(self):
+    def investment_info(self):
         pass
-    
     @abstractmethod
-    def InvestmentBuy(self):
+    def investment_buy(self):
         pass
-    
     @abstractmethod
     def InvestmentSell(self):
         pass
-
     @abstractmethod
     def InvestmentShowValue(self):
         pass
-
     @abstractmethod
     def InvestmentGetValue(self):
         pass
-
     def InvestmentCreate(self):
         self.InvestmentGetValue()
-        self.InvestmentBuy()
-        
+        self.investment_buy()
     def InvestmentDelete(self):
-        self.InvestmentInfo()
+        self.investment_info()
         self.InvestmentShowValue()
         self.InvestmentSell()
-
-
 
 class StockExchange(InvestmentTemplate):
     Amount = 0
@@ -67,78 +60,59 @@ class StockExchange(InvestmentTemplate):
         self.securityName = name
         self.purchaseDate = datetime.date.today()
         self.Amount = amount
-        
-    def InvestmentInfo(self):
+    def investment_info(self):
         print"StockEx Company {} purchased on {}".format(self.securityName, self.purchaseDate)
-
-    def InvestmentBuy(self):
+    def investment_buy(self):
         print "StockEx Buying: {}".format(self.securityName)
-        
     def InvestmentSell(self):
         print "StockEx Selling: {}".format(self.securityName)
-
     def InvestmentShowValue(self):
         print "StockEx Gain is: {}".format(self.Amount*(self.purchasePrice - self.currentPrice))
-    
     def InvestmentGetValue(self):
         print "\nStockEx Price is: {}".format(self.currentPrice)
 
 class GiltEdgedSecurities(InvestmentTemplate):
     Amount = 0
-    
     def __init__(self, name, amount):
         self.securityName = name
         self.purchaseDate = datetime.date.today()
         self.Amount = amount
-
-    def InvestmentInfo(self):
+    def investment_info(self):
         print"Bond: {} purchased on {}".format(self.securityName, self.purchaseDate)
-
-    def InvestmentBuy(self):
+    def investment_buy(self):
         print"Bond Buying {}".format(self.securityName)
-        
     def InvestmentSell(self):
         print"Bond Selling {}".format(self.securityName)
-
     def InvestmentShowValue(self):
         print "Bond Gain is: {}".format(self.Amount*(self.purchasePrice - self.currentPrice))
-    
     def InvestmentGetValue(self):
         print"\nBond Price is: {}".format(self.currentPrice)
-            
-    
+
 class TermDeposit(InvestmentTemplate):
     currency = currency
     interestRate = 0.01
     Amount = 0
-
     def __init__(self, name, amount):
         self.securityName = name
         self.purchaseDate = datetime.date.today()
         self.Amount = amount
-
-    def InvestmentInfo(self):
+    def investment_info(self):
         print "Term Deposit in a Bank, interest {} for {}".format(self.interestRate, self.Amount)
-
-    def InvestmentBuy(self):
+    def investment_buy(self):
         print "Term Deposit Buying {}".format(self.securityName)
-        
     def InvestmentSell(self):
         print "Term Deposit Selling {}".format(self.securityName)
-
     def InvestmentShowValue(self):
-        print "Term Deposit Gain is: {}".format(self.Amount*(self.purchasePrice - self.currentPrice))
-    
+        print "Term Deposit Gain is: {}".format(self.Amount*(self.purchasePrice \
+                                                             - self.currentPrice))
     def InvestmentGetValue(self):
         print "\nTerm Deposit Price is: {}".format(self.currentPrice)
 
 class InvestmentFactory():
-    
     def createInvestment(self, invest, name, amount):
-        if (invest in investmentType):
+        if invest in investmentType:
             return investmentType[invest](name, amount)
         return None
-        
 
 investmentType = {
     "termdeposit" : TermDeposit,
@@ -147,18 +121,17 @@ investmentType = {
 }
 
 class TemplatePatternDemo(PatternDemo):
+    """ This class inherits after PatternDemo and runs the demo """
     @staticmethod
-    def PatternInfo():
-        PatternDemo.PatternInfo()
+    def pattern_info():
+        PatternDemo.pattern_info()
         print "This is an example of Template Design Pattern"
-    
-    def PatternRun(self):
-        factory = InvestmentFactory();
-        investments = ["termdeposit", "stockexchange", "stockexchange", "giltedgedsecurity", "termdeposit", "none"]
-        
+    def pattern_run(self):
+        factory = InvestmentFactory()
+        investments = ["termdeposit", "stockexchange", \
+                       "stockexchange", "giltedgedsecurity", "termdeposit", "none"]
         for a in investments:
-            temp = factory.createInvestment(a, "AA", str(randint(0,100)))
-            if (temp != None):
+            temp = factory.createInvestment(a, "AA", str(randint(0, 100)))
+            if temp != None:
                 temp.InvestmentCreate()
                 temp.InvestmentDelete()
-

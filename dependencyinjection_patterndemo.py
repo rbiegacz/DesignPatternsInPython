@@ -14,13 +14,17 @@
 # limitations under the License.
 #
 
+""" this is an example of dependency injection pattern"""
+
 from patterndemo import PatternDemo
 
 class DependencyInjectionPatternDemo(PatternDemo):
+    """ this class inherits after PatternDemo and runs the Dependency Injection Demo"""
     @staticmethod
-    def PatternInfo():
-        PatternDemo.PatternInfo()
+    def pattern_info():
+        """ this method delivers more information about this pattern """
+        PatternDemo.pattern_info()
         print "This is an example of Dependency Injection Design Pattern"
-    
-    def PatternRun(self):
+    def pattern_run(self):
+        """ this method runs the pattern """
         print "Dependency Injection not implemented yet"

@@ -1,18 +1,20 @@
-from abc import ABCMeta,abstractmethod
+""" this is a demo template; each demo needs to inherit after this class """
+
+from abc import ABCMeta, abstractmethod
 
 class PatternDemo:
+    """ this is a demo template; each demo needs to inherit after this class """
     __metaclass__ = ABCMeta
-    
-    patternName = ""
- 
+    pattern_name = ""
     def __init__(self, name):
-        self.patternName = name
-        
+        """ constructor in Pattern Demo class, the second argument is a name for a demo """
+        self.pattern_name = name
     @staticmethod
-    def PatternInfo():
+    def pattern_info():
+        """ common info formating for all demos"""
         print "\n--------------------------------------------"
-    
     @abstractmethod
-    def PatternRun(self):
+    def pattern_run(self):
+        """ each demo needs to implement PatternRun function"""
         pass
     

@@ -14,13 +14,16 @@
 # limitations under the License.
 #
 
+""" this is an example for Facade Pattern"""
+
 from patterndemo import PatternDemo
 
 class FacadePatternDemo(PatternDemo):
+    """ this class runs Facade Pattern example """
     @staticmethod
-    def PatternInfo():
-        PatternDemo.PatternInfo()
+    def pattern_info():
+        PatternDemo.pattern_info()
         print "This is an example of Facade Design Pattern"
-    
-    def PatternRun(self):
+
+    def pattern_run(self):
         print "Facade not implemented yet"

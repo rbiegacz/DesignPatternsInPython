@@ -14,36 +14,44 @@
 # limitations under the License.
 #
 
+"""This script implements a simple example showing how docorator pattern works"""
+
 from patterndemo import PatternDemo
 
+
 def logging(logging_prefix, logging_suffix):
+    """Implementation of logging decorator"""
     def logging_decorator(func):
+        """decorator generator function"""
         def func_wrapper(name):
+            """wrapping function used by decorator"""
             return "{0}{1}{2}".format(logging_prefix, func(name), logging_suffix)
         return func_wrapper
     return logging_decorator
 
 @logging(">>> Info:", ".")
 def loginfo(text):
+    """ Example showing usage of logging decorator (info level)"""
     return text
 
 @logging(">>> Warning:", "?")
 def logwarning(text):
+    """ Example showing usage of logging decorator (warning level)"""
     return text
 
 @logging(">>> Error:", "!")
 def logerror(text):
+    """ Example showing usage of logging decorator (error level)"""
     return text
 
 class DecoratorPatternDemo(PatternDemo):
+    """ Demo class for Decorator Pattern; it inherits after PatternDemo"""
     @staticmethod
-    
-    def PatternInfo():
-        PatternDemo.PatternInfo()
+    def pattern_info():
+        PatternDemo.pattern_info()
         print "This is an example of Decorator Design Pattern"
         print "Insipired by http://thecodeship.com/patterns/guide-to-python-function-decorators/"
-    
-    def PatternRun(self):
+    def pattern_run(self):
         print loginfo("Decorator Pattern is cool")
         print logwarning("There might be a problem w/ Decorator pattern")
         print logerror("Your Decorator has a problem")

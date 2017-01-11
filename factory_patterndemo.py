@@ -14,57 +14,68 @@
 # limitations under the License.
 #
 
-from abc import ABCMeta,abstractmethod
+""" this is an example for Factory design pattern"""
+
+from abc import ABCMeta, abstractmethod
 from patterndemo import PatternDemo
 
 class Investment:
+    """ abstract base class for an investment"""
     __metaclass__ = ABCMeta
-    
+    def __init__(self):
+        pass
     @abstractmethod
-    def InvestmentInfo(self):
+    def investment_info(self):
+        """virtual function that is to give info about investment"""
         pass
 
 class StockExchange(Investment):
+    """class for an Stock Exchange investment"""
     Name = ""
     Amount = ""
     PurchaseDate = None
-    def InvestmentInfo(self):
-        print("Company on Stock Exchange")
+    def investment_info(self):
+        print "Company on Stock Exchange"
 
-class TermDeposit(Investment):  
+class TermDeposit(Investment):
+    """class for Term Deposit investment"""
     interestRate = 0.01
-    def InvestmentInfo(self):
-        print("Term Deposit in a Bank")
+    def investment_info(self):
+        print "Term Deposit in a Bank"
 
-class Bond(Investment):  
+class Bond(Investment):
+    """class for Bond investment"""
     interestRate = 0.01
-    def InvestmentInfo(self):
-        print("Bonds are usually emitted by governments")
+    def investment_info(self):
+        print "Bonds are usually emitted by governments"
 
-class InvestmentFactory():
-    
-    def createInvestment(self, invest):
-        if (invest in investmentType):
-            return investmentType[invest]()
-        return None
-
-investmentType = {
+INVESTMENT_TYPE = {
     "termdeposit" : TermDeposit,
     "stockexchange" : StockExchange,
     "bond" : Bond,
 }
 
+class InvestmentFactory(object):
+    """class implementing factory for various types of investments"""
+    def __init__(self):
+        pass
+    def create_investment(self, invest):
+        """factory method"""
+        if invest in INVESTMENT_TYPE:
+            return INVESTMENT_TYPE[invest]()
+        return None
+
 class FactoryPatternDemo(PatternDemo):
+    """class running Factory design pattern example"""
     @staticmethod
-    def PatternInfo():
-        PatternDemo.PatternInfo()
+    def pattern_info():
+        PatternDemo.pattern_info()
         print "This is an example of Factory Design Pattern"
-    
-    def PatternRun(self):
-        factory = InvestmentFactory();
-        investments = ["termdeposit", "stockexchange", "stockexchange", "termdeposit", "none", "bond"]
-        
-        for a in investments:
-            temp = factory.createInvestment(a)
-            if (temp != None):
-                temp.InvestmentInfo()
+    def pattern_run(self):
+        factory = InvestmentFactory()
+        investment_type = ["termdeposit", "stockexchange", "stockexchange",
+                           "termdeposit", "none", "bond"]
+        for investment_example in investment_type:
+            temp = factory.create_investment(investment_example)
+            if temp != None:
+                temp.investment_info()

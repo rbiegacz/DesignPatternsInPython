@@ -8,7 +8,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-#Python Byte Code
+# Python Byte Code
 *.pyc
 
 # Windows Installer files
@@ -49,3 +49,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.pyc
+*.bin
+.gradle/3.3/taskArtifacts/taskArtifacts.lock
+*.project
+.project
+.project

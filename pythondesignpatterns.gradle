@@ -1,9 +1,0 @@
-task run(type: Exec) {
-  executable "python"
-  args "patterndemos.py", "echo 'running pattern examples'"
-}
-
-task pylint(type: Exec) {
-  executable "pylint"
-  args "patterndemos.py", "echo 'running pylint analysis'"
-}

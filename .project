@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>build.gradle</name>
+			<type>1</type>
+			<location>C:/Users/rbiegacz/Documents/GitHub/DesignPatternsInPython/build.gradle</location>
+		</link>
+		<link>
 			<name>decorator_patterndemo.py</name>
 			<type>1</type>
 			<location>C:/Users/rbiegacz/Documents/GitHub/DesignPatternsInPython/decorator_patterndemo.py</location>
